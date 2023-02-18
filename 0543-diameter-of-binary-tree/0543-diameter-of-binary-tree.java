@@ -23,21 +23,20 @@ class Solution {
       }
   }    
     
-    public int diameterOfBinaryTree(TreeNode A) {
-       if(A == null){
-            return 0;
-        }
-        int left = height(A.left);
-        int right = height(A.right);
-        return Math.max(diameterOfBinaryTree(A.left), Math.max(diameterOfBinaryTree(A.right), left + right));
+    public int diameterOfBinaryTree(TreeNode root) {
+        DiaPair ans = helper(root);
+        return ans.dia;
     }
     
-    public int height(TreeNode node){
-        if(node == null){
-            return 0;
-        }
-        int left = height(node.left);
-        int right = height(node.right);
-        return Math.max(left, right)+1;
-    }
+    public DiaPair helper(TreeNode root){
+      if(root == null){
+          return new DiaPair();
+      }
+      DiaPair left = helper(root.left);
+      DiaPair right = helper(root.right);
+      DiaPair myPair = new DiaPair();
+      myPair.ht = Math.max(left.ht, right.ht) + 1;
+      myPair.dia = Math.max(left.ht + right.ht, Math.max(left.dia, right.dia));
+      return myPair;
+  }
 }

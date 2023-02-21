@@ -1,8 +1,5 @@
 class Solution {
     public int singleNonDuplicate(int[] A) {
-        if(A.length == 1){
-            return A[0];
-        }
         int n = A.length;
         int l = 0;
         int r = n-1;

@@ -23,11 +23,11 @@ class Solution {
     }
     public String helper(TreeNode node){
         if(node == null){
-            return "";
+            return "&";
         }
         String left = helper(node.left);
         String right = helper(node.right);
-        String myKey = node.val + " " + left + " " + right;
+        String myKey = node.val + "," + left + "," + right;
         map.put(myKey, map.getOrDefault(myKey, 0)+1);
         if(map.get(myKey)==2){
             ans.add(node);

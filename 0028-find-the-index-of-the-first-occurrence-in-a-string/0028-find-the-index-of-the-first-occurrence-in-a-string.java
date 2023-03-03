@@ -10,7 +10,7 @@ class Solution {
             int x = i;
             while(x < n && j < m && haystack.charAt(x) == needle.charAt(j)){
                 if(j == 0) k = i;
-                if(j == m-1) return k;
+                if(j == m-1) return i;
                 j++;
                 x++;
             }

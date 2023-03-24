@@ -1,26 +1,26 @@
 class Solution {
     public int minReorder(int n, int[][] connections) {
-        Map<Integer, List<Integer>> graph = new HashMap<>();
-        Set<Integer> visited = new HashSet<>();
-        int numReversals = 0;
+        List<Integer>[] graph = new ArrayList[n];
         for (int i = 0; i < n; i++) {
-            graph.put(i, new ArrayList<>());
+            graph[i] = new ArrayList<>();
         }
         for (int[] connection : connections) {
-            graph.get(connection[0]).add(connection[1]);
-            graph.get(connection[1]).add(-connection[0]);
+            graph[connection[0]].add(connection[1]);
+            graph[connection[1]].add(-connection[0]);
         }
+        int numReversals = 0;
+        boolean[] visited = new boolean[n];
         Queue<Integer> queue = new LinkedList<>();
+        visited[0] = true;
         queue.add(0);
-        visited.add(0);
         while (!queue.isEmpty()) {
             int curr = queue.poll();
-            for (int next : graph.get(curr)) {
-                if (!visited.contains(Math.abs(next))) {
+            for (int next : graph[curr]) {
+                if (!visited[Math.abs(next)]) {
                     if (next > 0) {
                         numReversals++;
                     }
-                    visited.add(Math.abs(next));
+                    visited[Math.abs(next)] = true;
                     queue.add(Math.abs(next));
                 }
             }

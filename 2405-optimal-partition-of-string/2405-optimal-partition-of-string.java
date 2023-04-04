@@ -1,19 +1,24 @@
 class Solution {
     public int partitionString(String s) {
         int count = 0;
-        HashSet<Character> set = new HashSet<>();
+        int[] freq = new int[26];
         for(int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if(set.contains(c)){
+            int c = s.charAt(i) - 'a';
+            if(freq[c] == 1){
                 count++;
-                set = new HashSet();
-                set.add(c);
+                freq = new int[26];
+                freq[c] = 1;
             }
             else{
-                set.add(c);
+                freq[c] = 1;
             }
         }
-        if(!set.isEmpty()) count++;
+        for(int i = 0; i < 26; i++){
+            if(freq[i] == 1){
+                count++;
+                break;
+            }
+        }
         return count;
     }
 }

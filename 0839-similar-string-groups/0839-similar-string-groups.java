@@ -7,8 +7,11 @@ class Solution {
         parent = new int[n];
         ans = n;
         int N = n;
-        while(N-- > 0){
-            parent[N] = N;
+        // while(N-- > 0){
+        //     parent[N] = N;
+        // }
+        for(int i = 0; i < parent.length; i++){
+            parent[i] = i;
         }
         ht = new int[n];
         for(int i = 0; i < n; i++){
@@ -49,7 +52,12 @@ class Solution {
     }
     
     public int calc(){
-        return ans;
+        int cnt = 0;
+        for(int i = 0; i < parent.length; i++){
+            System.out.print(parent[i] + ", ");
+            if(i == parent[i]) cnt++;
+        }
+        return cnt;
     }
     
     public boolean areSimilar(String s1, String s2){

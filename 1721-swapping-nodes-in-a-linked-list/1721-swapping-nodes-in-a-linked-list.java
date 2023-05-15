@@ -19,7 +19,6 @@ class Solution {
         int t = al.get(k-1);
         al.set(k-1, al.get(al.size()-k));
         al.set(al.size()-k, t);
-        System.out.print(al);
         ListNode newNode = new ListNode(0);
         ListNode newHead = newNode;
         for(int v : al){
